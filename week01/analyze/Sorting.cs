@@ -15,3 +15,5 @@
         }
     }
 }
+
+// 1. The big O notation for the SortArray function is big O n^2

@@ -63,3 +63,5 @@ public static class Search {
         return 1 + SearchSorted2(data, target, start, middle - 1);
     }
 }
+
+// The Performance of Big O notaion for the SearchSorted1 is Big O(n) while the second function is Big O(log n) the second ones performance is a lot better than the first ones.

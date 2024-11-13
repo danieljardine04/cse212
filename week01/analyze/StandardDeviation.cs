@@ -20,6 +20,8 @@ public static class StandardDeviation {
             count += 1;
         }
 
+        // Standard Deviation 1 is Big O(n)
+
         var avg = total / count;
         var sumSquaredDifferences = 0.0;
         foreach (var number in numbers) {
@@ -50,6 +52,8 @@ public static class StandardDeviation {
         return Math.Sqrt(variance);
     }
 
+    // StandardDeviation2 is Big O(n^2)
+
     private static double StandardDeviation3(int[] numbers) {
         var count = numbers.Length;
         var avg = (double)numbers.Sum() / count;
@@ -61,4 +65,5 @@ public static class StandardDeviation {
         var variance = sumSquaredDifferences / count;
         return Math.Sqrt(variance);
     }
+    // StandardDeviation3 is Big O(n)
 }
