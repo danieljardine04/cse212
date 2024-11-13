@@ -34,6 +34,10 @@ public static class Arrays
     public static void RotateListRight(List<int> data, int amount)
     {
         // TODO Problem 2 Start
+        // First you need to create a for loop with the i being less than the amount because that is how many spaces we are moving over
+        // In the for loop for each item we are moving over we need to store that value in an int. So we need to create an int value with the last value in the data list
+        // Once the data is stored to a variable we need to remove that value from the end of the list using the RemoveAt class
+        // Once the value is removed, we need to store the saved value and add it to the front of the list. 
         for(int i = 0; i < amount; i++){
             int value = data[data.Count()-1];
             data.RemoveAt(data.Count()- 1);
