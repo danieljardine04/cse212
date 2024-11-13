@@ -34,8 +34,10 @@ public static class Arrays
     public static void RotateListRight(List<int> data, int amount)
     {
         // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        for(int i = 0; i < amount; i++){
+            int value = data[data.Count()-1];
+            data.RemoveAt(data.Count()- 1);
+            data.Insert(0, value);
+        }
     }
 }
