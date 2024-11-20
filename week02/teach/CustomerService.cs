@@ -14,6 +14,9 @@ public class CustomerService {
         // Scenario: 
         // Expected Result: 
         Console.WriteLine("Test 1");
+        var service = new CustomerService(3);
+        service.AddNewCustomer();
+        service.ServeCustomer();
 
         // Defect(s) Found: 
 
@@ -23,10 +26,19 @@ public class CustomerService {
         // Scenario: 
         // Expected Result: 
         Console.WriteLine("Test 2");
+        var service1 = new CustomerService(-1);
+        if(service1._maxSize == 10){
+            Console.Write("The test passed!");
+        }
 
         // Defect(s) Found: 
 
         Console.WriteLine("=================");
+
+        var service2 = new CustomerService(2);
+        service2.AddNewCustomer();
+        service2.AddNewCustomer();
+        service2.AddNewCustomer();
 
         // Add more Test Cases As Needed Below
     }

@@ -1,4 +1,6 @@
-﻿public class SimpleQueue {
+﻿using System.Diagnostics;
+
+public class SimpleQueue {
     public static void Run() {
         // Test Cases
 
