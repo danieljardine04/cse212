@@ -1,4 +1,6 @@
+using System.Reflection.Metadata;
 using System.Text.Json;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 public static class SetsAndMaps
 {
@@ -22,7 +24,28 @@ public static class SetsAndMaps
     public static string[] FindPairs(string[] words)
     {
         // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        List<string> results = new List<string>();
+        var set = new HashSet<string>{};
+        foreach(string word in words){
+            set.Add(word);
+            char[] wordReverse = word.ToCharArray();
+            string reverse = "";
+            for(int i = wordReverse.Length - 1; i > -1; i--){
+                reverse = reverse + wordReverse[i];
+            }
+            if(set.Contains(word) && set.Contains(reverse) && word != reverse){
+                results.Add(word + " & " + reverse);
+            }
+        }
+
+        string[] result = new string[results.Count()];
+
+        for(int i = 0; i < results.Count(); i++){
+            result[i] = results[i];
+        }
+        
+        
+        return result;
     }
 
     /// <summary>
@@ -42,8 +65,17 @@ public static class SetsAndMaps
         foreach (var line in File.ReadLines(filename))
         {
             var fields = line.Split(",");
+            string name = fields[3];
+            if(!degrees.ContainsKey(name)){
+                degrees.Add(name, 1);
+            }
+            else{
+                degrees[name] += 1;
+            }
+
             // TODO Problem 2 - ADD YOUR CODE HERE
         }
+    
 
         return degrees;
     }
@@ -67,7 +99,58 @@ public static class SetsAndMaps
     public static bool IsAnagram(string word1, string word2)
     {
         // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+        string firstWord = deleteSpaces(word1);
+        string secondWord = deleteSpaces(word2);
+        
+        if(firstWord.Length != secondWord.Length){
+            return false;
+        }
+        else{
+         char[] chars1 = firstWord.ToCharArray();
+         char[] chars2 = secondWord.ToCharArray(); 
+        var letters1 = new Dictionary<char, int>();
+        var letters2 = new Dictionary<char, int>();
+        for(int i = 0; i < chars1.Length; i++){
+            if(!letters1.ContainsKey(chars1[i])){
+                letters1.Add(chars1[i], 1);
+            }
+            else {
+                letters1[chars1[i]] += 1;
+            }
+        } 
+        for(int i = 0; i < chars2.Length; i++){
+            if(!letters2.ContainsKey(chars2[i])){
+                letters2.Add(chars2[i], 1);
+            }
+            else {
+                letters2[chars2[i]] += 1;
+            }
+            
+        }
+        for(int i = 0; i < chars1.Length; i++){
+            if(!letters2.ContainsKey(chars1[i]) || letters1[chars1[i]] != letters2[chars1[i]]){
+                return false;
+            }
+        }
+        return true;
+
+        }
+        
+
+
+    }
+
+    public static string deleteSpaces(string word){
+        char[] fullWord = word.ToLower().ToCharArray();
+        string result = "";
+        for(int i = 0; i < fullWord.Length; i++){
+            if(fullWord[i] == ' '){
+                continue;
+            }
+            result += fullWord[i];
+        }
+        return result;
+
     }
 
     /// <summary>
