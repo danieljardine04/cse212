@@ -33,6 +33,23 @@ public class LinkedList : IEnumerable<int>
     public void InsertTail(int value)
     {
         // TODO Problem 1
+        Node newNode = new(value);
+        if (_tail is null)
+        {
+            _head = newNode;
+            _tail = newNode;
+        }
+        else
+        if(_tail == _head){
+            newNode.Prev = _head;
+            _tail = newNode;
+            _head.Next = _tail;
+        }
+        else {
+            newNode.Prev = _tail;
+            _tail.Next = newNode;
+            _tail = newNode;
+        }
     }
 
 
@@ -65,6 +82,16 @@ public class LinkedList : IEnumerable<int>
     public void RemoveTail()
     {
         // TODO Problem 2
+        if (_head == _tail)
+        {
+            _head = null;
+            _tail = null;
+        } 
+        else {
+            _tail.Prev!.Next = null;
+            _tail = _tail.Prev;
+
+        }
     }
 
     /// <summary>
@@ -108,6 +135,20 @@ public class LinkedList : IEnumerable<int>
     /// </summary>
     public void Remove(int value)
     {
+        Node? curr = _head;
+        while(curr is not null){
+            if(curr.Data == value){
+                if(curr == _tail){
+                 RemoveTail();
+                } 
+            else {
+                curr.Prev!.Next = curr.Next;
+                curr.Next!.Prev = curr.Prev;
+            }
+            return;
+        }
+            curr = curr.Next;
+        }
         // TODO Problem 3
     }
 
@@ -117,6 +158,21 @@ public class LinkedList : IEnumerable<int>
     public void Replace(int oldValue, int newValue)
     {
         // TODO Problem 4
+        if(_head == _tail && _head.Data == oldValue){
+            RemoveTail();
+            InsertTail(newValue);
+        }
+        else {
+            for(Node curr = _head; curr != null; curr = curr.Next){
+                if(curr.Data == oldValue){
+                    InsertAfter(oldValue, newValue);
+                    Remove(oldValue);
+                }
+            
+            }
+
+        }
+        
     }
 
     /// <summary>
