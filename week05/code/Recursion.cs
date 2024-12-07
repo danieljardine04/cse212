@@ -1,4 +1,6 @@
 using System.Collections;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+using NuGet.Frameworks;
 
 public static class Recursion
 {
@@ -12,10 +14,18 @@ public static class Recursion
     /// to identify a base case (terminating case).  If the value of
     /// n <= 0, just return 0.   A loop should not be used.
     /// </summary>
+          
     public static int SumSquaresRecursive(int n)
     {
         // TODO Start Problem 1
-        return 0;
+        if(n <= 0){
+            return 0;
+
+        }
+        else{
+            return n * n + SumSquaresRecursive(n-1);
+
+        }
     }
 
     /// <summary>
@@ -40,6 +50,20 @@ public static class Recursion
     public static void PermutationsChoose(List<string> results, string letters, int size, string word = "")
     {
         // TODO Start Problem 2
+        
+
+        if(word.Length == size){
+            results.Add(word);
+        }
+        else{
+            for(int i = 0; i < letters.Length; i++){
+                var lettersleft = letters.Remove(i, 1);
+                PermutationsChoose(results, lettersleft, size, word + letters[i]);
+                
+
+            }
+        }
+
     }
 
     /// <summary>
@@ -95,11 +119,18 @@ public static class Recursion
             return 2;
         if (s == 3)
             return 4;
+        if(remember == null){
+            remember = new Dictionary<int, decimal>();
+        }
+        if(remember.ContainsKey(s)){
+            return remember[s];
+        }
 
         // TODO Start Problem 3
 
         // Solve using recursion
-        decimal ways = CountWaysToClimb(s - 1) + CountWaysToClimb(s - 2) + CountWaysToClimb(s - 3);
+        decimal ways = CountWaysToClimb(s - 1, remember) + CountWaysToClimb(s - 2, remember) + CountWaysToClimb(s - 3, remember);
+        remember[s] = ways; 
         return ways;
     }
 

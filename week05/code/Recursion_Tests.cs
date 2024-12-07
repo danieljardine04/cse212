@@ -28,6 +28,9 @@ public class PermutationsChooseTests
     {
         var results = new List<string>();
         Recursion.PermutationsChoose(results, "ABCD", 3);
+        foreach(String word in results){
+            Console.WriteLine(word);
+        }
 
         results.Sort();
         var expected = new List<string> {
