@@ -34,7 +34,14 @@ public class Node
     public bool Contains(int value)
     {
         // TODO Start Problem 2
-        return false;
+        if(Data == value){
+            return true;
+        } 
+        if(Left is not null && Left.Contains(value)){
+            return true;
+        }
+        return Right is not null && Right.Contains(value); 
+    
     }
 
     public int GetHeight()

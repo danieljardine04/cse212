@@ -9,19 +9,25 @@ public class BinarySearchTree : IEnumerable<int>
     /// </summary>
     public void Insert(int value)
     {
-        // Create new node
-        Node newNode = new(value);
-        // If the list is empty, then point both head and tail to the new node.
-        if (_root is null)
-        {
-            _root = newNode;
-        }
-        // If the list is not empty, then only head will be affected.
-        else
-        {
-            _root.Insert(value);
+        if(!this.Contains(value)){
+            
+            Node newNode = new Node(value);
+            
+            // If the list is empty, then point both head and tail to the new node.
+            if (_root is null)
+            {
+                _root = newNode;
+            }
+            // If the list is not empty, then only head will be affected.
+            else
+            {
+                _root.Insert(value);
+            
+            }
         }
     }
+    
+    
 
     /// <summary>
     /// Check to see if the tree contains a certain value
@@ -65,6 +71,8 @@ public class BinarySearchTree : IEnumerable<int>
         }
     }
 
+    
+
     /// <summary>
     /// Iterate backward through the BST.
     /// </summary>
@@ -81,6 +89,11 @@ public class BinarySearchTree : IEnumerable<int>
     private void TraverseBackward(Node? node, List<int> values)
     {
         // TODO Problem 3
+        if(node is not null){
+            TraverseBackward(node.Right, values);
+            values.Add(node.Data);
+            TraverseBackward(node.Left, values);
+        }
     }
 
     /// <summary>
@@ -103,4 +116,27 @@ public static class IntArrayExtensionMethods {
     public static string AsString(this IEnumerable array) {
         return "<IEnumerable>{" + string.Join(", ", array.Cast<int>()) + "}";
     }
+
 }
+
+// public class Node{
+
+//         public void insert(int value){
+//             if(value < Data){
+//                 if(Left is null){
+//                     Left = new Node(value);
+//                 }
+//                 else{
+//                     Left.insert(value);
+//                 }
+//             } else {
+//                 if(Right is null){
+//                     Right = new Node(value);
+//                 }
+//                 else {
+//                     Right.insert(value);
+//                 }
+//             }
+
+//         }
+//     }
